@@ -14,6 +14,7 @@ function App() {
           path="/"
           element={
             <Private>
+              {" "}
               <Home />
             </Private>
           }

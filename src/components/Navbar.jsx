@@ -6,10 +6,10 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { logoutsuccess } from "../redux/Login/action";
+import { logoutsuccess } from "../store/auth/action";
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const token = useSelector((state) => state.auth.token);
 
@@ -22,8 +22,8 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/cart"}>Cart</Link>
+            Products Pricing Blog
+            <Link to={"/"}>Private Route</Link>
           </Box>
           {token ? (
             <Box
@@ -31,7 +31,7 @@ const Navbar = () => {
               style={{ cursor: "pointer" }}
               sx={{ flexGrow: 0 }}
             >
-              Logout
+              logout
             </Box>
           ) : (
             <Link to="/login">

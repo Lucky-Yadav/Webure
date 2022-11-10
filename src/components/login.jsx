@@ -1,70 +1,60 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {
-  loginloading,
-  sucessLogin,
-  logoutsuccess,
-} from "../redux/Login/action";
+import { loginloading, sucessLogin } from "../store/auth/action";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { LOGIN_LOADING } from "../redux/Login/actiontype";
+// import { LOGIN_LOADING } from "../store/auth/actiontype";
 // import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const token = useSelector((state) => state.auth.token);
-  const dispatch = useDispatch();
-  // const [token, settoken] = useState("")
-  const [loginData, setloginData] = useState({
-    username:"",
-    email: "",
-    password: "",
-  });
-  const handlelogout = () => {
-    dispatch(logoutsuccess());
-  };
+  
+const token = useSelector((state) => state.auth.token);
+    const dispatch = useDispatch();
+    const [loginData, setloginData] = useState({
+        email: "",
+        password:""
+    })
+  // const handlelogout = () => {
+  //   dispatch(logoutsuccess());
+  // };
 
-  const handlechange = (e) => {
-    const { name, value } = e.target;
-    setloginData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const handlechange = (e) => {     
+        const { name, value } = e.target;
+        setloginData(prev => ({
+            ...prev,
+            [name]:value
+        }))
+  }
 
   const handlelogin = () => {
-     console.log(2);
-    // dispatch(loginloading());
-    axios({
-      method: "post",
-      url: "http://localhost:3070/users/signup",
-      data: loginData,
-    }).then((res) => {
-      dispatch(sucessLogin(res.data.token));
-      console.log(res.data.token)
-      // settoken(res.data)
-      console.log(res);
-    });
-  };
+      //  console.log(2);
+        dispatch(loginloading());
+        axios({
+          method: "post",
+            url: "https://reqres.in/api/login",
+          data: loginData
+        }).then(res => {
+          dispatch(sucessLogin(res.data.token))
+        })
+  }
   if (token) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/"}/>
   }
   return (
     <div>
-      <h3>Login into your account</h3>
       <div className="div">
         {Object.keys(loginData).map((el) => (
-          <TextField
-            key={el}
+          <TextField key={el.email}
             value={loginData[el]}
-            onChange={handlechange}
+            onChange={ handlechange}
             name={el}
             id={el}
             label={el.toLocaleUpperCase()}
             variant="outlined"
-            required
           />
         ))}
       </div>
@@ -72,12 +62,11 @@ const Login = () => {
       <div className="button">
         <br />
         <Button
-          onClick={handlelogin}
+          onClick={ handlelogin}
           variant="contained"
+          endIcon={<SendIcon />}
         >
-          {/* Login */}
-          {token ? "log out" : "Sign Up"}
-          {token}
+          {token ? "log out" : "log in"}
         </Button>
       </div>
     </div>
