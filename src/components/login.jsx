@@ -39,9 +39,9 @@ const Login = () => {
       // dispatch(sucessLogin(res.data.token));
     });
   };
-  if (token) {
+  // if (token) {
     return <Navigate to={"/"} />;
-  }
+  // }
   return (
     <div>
       <div className="div">
@@ -64,7 +64,7 @@ const Login = () => {
           onClick={handlelogin}
           variant="contained"
         >
-          {token ? "log out" : "log in"}
+          {/* {token ? "log out" : "log in"} */}
         </Button>
       </div>
     </div>

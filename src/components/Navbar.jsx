@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/cart"}>Cart</Link>
           </Box>
-          {token ? (
+          {/* {token ? (
             <Box
               onClick={handlelogout}
               style={{ cursor: "pointer" }}
@@ -39,7 +39,7 @@ const Navbar = () => {
                 Login
               </Box>
             </Link>
-          )}
+          )} */}
         </Toolbar>
       </Container>
     </AppBar>
