@@ -3,7 +3,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { loginloading, sucessLoginreq } from "../redux/Login/action";
+import {
+  loginloading,
+  sucessLogin,
+  logoutsuccess,
+} from "../redux/Login/action";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { LOGIN_LOADING } from "../redux/Login/actiontype";
@@ -14,13 +18,13 @@ const Login = () => {
   const dispatch = useDispatch();
   // const [token, settoken] = useState("")
   const [loginData, setloginData] = useState({
-    user:"",
+    username:"",
     email: "",
     password: "",
   });
-  // const handlelogout = () => {
-  //   dispatch(logoutsuccess());
-  // };
+  const handlelogout = () => {
+    dispatch(logoutsuccess());
+  };
 
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -35,11 +39,11 @@ const Login = () => {
     // dispatch(loginloading());
     axios({
       method: "post",
-      url: "http://localhost:3070/",
+      url: "http://localhost:3070/users/signup",
       data: loginData,
     }).then((res) => {
-      dispatch(sucessLoginreq(res.data.token));
-      console.log(res.data)
+      dispatch(sucessLogin(res.data.token));
+      console.log(res.data.token)
       // settoken(res.data)
       console.log(res);
     });
