@@ -20,7 +20,7 @@ export const registeruser = (payload) => (dispatch) => {
   dispatch(registerreq());
   const requestParam = {
     method: "post",
-    url: "https://reqres.in/api/login",
+    url: "http://localhost:3070/users/signup",
     header: {
       "Content-Type": "Application/json",
     },

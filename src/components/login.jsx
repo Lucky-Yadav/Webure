@@ -2,17 +2,17 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
-// import { useDispatch } from "react-redux";
-// import { loginloading, sucessLogin } from "../store/auth/action";
-// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { loginloading, sucessLoginreq } from "../redux/Login/action";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-// import { LOGIN_LOADING } from "../store/auth/actiontype";
+import { LOGIN_LOADING } from "../redux/Login/actiontype";
 // import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  // const token = useSelector((state) => state.auth.token);
-  // const dispatch = useDispatch();
-  const [token, settoken] = useState("")
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+  // const [token, settoken] = useState("")
   const [loginData, setloginData] = useState({
     user:"",
     email: "",
@@ -31,16 +31,16 @@ const Login = () => {
   };
 
   const handlelogin = () => {
-    //  console.log(2);
+     console.log(2);
     // dispatch(loginloading());
     axios({
       method: "post",
       url: "http://localhost:3070/",
       data: loginData,
     }).then((res) => {
-      // dispatch(sucessLogin(res.data.token));
+      dispatch(sucessLoginreq(res.data.token));
       console.log(res.data)
-      settoken(res.data)
+      // settoken(res.data)
       console.log(res);
     });
   };

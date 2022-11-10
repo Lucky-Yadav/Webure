@@ -4,14 +4,14 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { logoutsuccess } from "../store/auth/action";
 
 const Navbar = () => {
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  // const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.token);
 
   // const dispatch = useDispatch();
   const handlelogout = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/cart"}>Cart</Link>
           </Box>
-          {/* {token ? (
+          {token ? (
             <Box
               onClick={handlelogout}
               style={{ cursor: "pointer" }}
@@ -39,7 +39,7 @@ const Navbar = () => {
                 Login
               </Box>
             </Link>
-          )} */}
+          )}
         </Toolbar>
       </Container>
     </AppBar>
