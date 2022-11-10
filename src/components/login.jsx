@@ -12,7 +12,9 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   // const token = useSelector((state) => state.auth.token);
   // const dispatch = useDispatch();
+  const [token, settoken] = useState("")
   const [loginData, setloginData] = useState({
+    user:"",
     email: "",
     password: "",
   });
@@ -33,27 +35,32 @@ const Login = () => {
     // dispatch(loginloading());
     axios({
       method: "post",
-      url: "https://reqres.in/api/login",
+      url: "http://localhost:3070/",
       data: loginData,
     }).then((res) => {
       // dispatch(sucessLogin(res.data.token));
+      console.log(res.data)
+      settoken(res.data)
+      console.log(res);
     });
   };
   // if (token) {
-    return <Navigate to={"/"} />;
+  //   return <Navigate to={"/"} />;
   // }
   return (
     <div>
+      <h3>Login into your account</h3>
       <div className="div">
         {Object.keys(loginData).map((el) => (
           <TextField
-            key={el.email}
+            key={el}
             value={loginData[el]}
             onChange={handlechange}
             name={el}
             id={el}
             label={el.toLocaleUpperCase()}
             variant="outlined"
+            required
           />
         ))}
       </div>
@@ -64,7 +71,8 @@ const Login = () => {
           onClick={handlelogin}
           variant="contained"
         >
-          {/* {token ? "log out" : "log in"} */}
+          {/* Login */}
+          {token ? "log out" : "log in"}
         </Button>
       </div>
     </div>

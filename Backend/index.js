@@ -2,13 +2,19 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const PORT = 3070;
-// console.log(process);
+const cors = require("cors");
 var jwt = require("jsonwebtoken");
+const { MongoClient } = require("mongodb");
+const userRouter = require("./routes/userRoutes");
+const mongoose = require('mongoose');
 
 app.use(express.json());
-
+app.use(
+  cors()
+);
+app.use("/users", userRouter)
 const todos = [];
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
   try {
     return res.send({
       todos,
@@ -19,7 +25,7 @@ app.get("/", (req, res) => {
   }
 });
 
-app.post("/", (req, res) => {
+app.post("/", (req, res, next) => {
   try {
     const { email, password } = req.body;
     console.log(email, password);
@@ -33,23 +39,18 @@ app.post("/", (req, res) => {
     return res.status(500).send("internal server errr");
   }
 });
-app.delete("/:id", (req, res) => {
-  const { id } = req.params;
-
-  let index = null;
-  todos.forEach((todo, i) => {
-    if (todo.id == id) {
-      index = i;
-    } else {
-      todos.splice(index, 1);
-      return res.send("deleted");
-    }
-  });
-  if (index == null) {
-    return res.status(404).send("data doesn't exist");
-  }
-});
-
-app.listen(PORT, () => {
+mongoose
+  .connect(
+    "mongodb+srv://user:wGPrQ0iGQM3rO4nZ@cluster0.zkwpvpy.mongodb.net/?retryWrites=true&w=majority"
+  )
+    .then(() => {
+        console.log("handshake successful")
+      app.listen(PORT, () => {
   console.log(`server started at http://localhost:${PORT}`);
 });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
