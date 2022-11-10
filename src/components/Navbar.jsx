@@ -10,7 +10,7 @@ import { logoutsuccess } from "../store/auth/action";
 
 const Navbar = () => {
   // const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+   let local_token = JSON.parse(localStorage.getItem("token"));
   const token = useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();

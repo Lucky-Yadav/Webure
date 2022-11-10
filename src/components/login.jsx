@@ -39,7 +39,9 @@ const token = useSelector((state) => state.auth.token);
           data: loginData,
         }).then((res) => {
           dispatch(sucessLogin(res.data));
-          console.log(res)
+          let token = res.data.token
+          localStorage.setItem("token", JSON.stringify(token));
+          console.log(res, token)
         });
   }
   if (token) {
