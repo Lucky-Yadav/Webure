@@ -14,31 +14,31 @@ app.use(
 );
 app.use("/users", userRouter)
 const todos = [];
-app.get("/", (req, res, next) => {
-  try {
-    return res.send({
-      todos,
-    });
-  } catch (error) {
-    console.error(error.message);
-    res.send("internal error ");
-  }
-});
+// app.get("/", (req, res, next) => {
+//   try {
+//     return res.send({
+//       todos,
+//     });
+//   } catch (error) {
+//     console.error(error.message);
+//     res.send("internal error ");
+//   }
+// });
 
-app.post("/", (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-    console.log(email, password);
+// app.post("/", (req, res, next) => {
+//   try {
+//     const { email, password } = req.body;
+//     console.log(email, password);
 
-    const token = jwt.sign({ email: email, password:password }, 'SECRET_KEY');
+//     const token = jwt.sign({ email: email, password:password }, 'SECRET_KEY');
 
     
-    return res.send(token);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send("internal server errr");
-  }
-});
+//     return res.send(token);
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).send("internal server errr");
+//   }
+// });
 mongoose
   .connect(
     "mongodb+srv://user:wGPrQ0iGQM3rO4nZ@cluster0.zkwpvpy.mongodb.net/?retryWrites=true&w=majority"
