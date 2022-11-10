@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { loginloading, sucessLogin } from "../store/auth/action";
+// import { loginloading, sucessLogin } from "../store/auth/action";
 
 const Home = () => {
   const [products, setproducts] = useState([]);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
   useEffect(() => {
     axios({
@@ -29,7 +29,7 @@ const Home = () => {
       },
     }).then((res) => {
       console.log(res);
-      dispatch(sucessLogin(res.data));
+      // dispatch(sucessLogin(res.data));
       console.log(res);
     });
 }

@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Private from "./components/Private";
-import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -19,16 +18,6 @@ function App() {
             </Private>
           }
         ></Route>
-        {/* <Route path="/"element={<Home />}></Route> */}
-        <Route
-          path="/cart"
-          element={
-            <Private>
-              <Cart />
-            </Private>
-          }
-        ></Route>
-        {/* <Route path="/cart"element={<Cart />}></Route> */}
         <Route path="/login" element={<Login />}></Route>
       </Routes>
     </div>
