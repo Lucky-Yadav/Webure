@@ -1,46 +1,51 @@
-import axios from "axios";
+// import axios from "axios";
 import {
-  LOGIN_REQ,
+  LOGIN_LOADING,
   LOGIN_SUCCESS,
-  LOGOUT_PAGE,
+  LOGIN_ERROR,
+  LOGOUT_SUCCESS,
 } from "./actiontype";
 
-export const loginregister = (payload) => {
+export const loginloading = () => {
   return {
-    type: LOGIN_REQ,
-    payload,
+    type: LOGIN_LOADING,
   };
 };
 
-export const sucessLoginreq = (payload) => {
+export const sucessLogin = (payload) => {
   return {
     type: LOGIN_SUCCESS,
     payload,
   };
 };
 
-export const logoutpage = () => {
+export const loginerror = () => {
   return {
-    type: LOGOUT_PAGE,
+    type: LOGIN_ERROR,
+  };
+};
+export const logoutsuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
   };
 };
 
-export const loginruser = (payload) => (dispatch) => {
-  dispatch(loginregister());
+// export const loginruser = (payload) => (dispatch) => {
+// // dispatch(loginregister());
 
-  axios
-    .post(`http://localhost:3070/users/signin`, payload, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      let pay = {
-        token: response.token,
-        username: payload.username,
-      };
-      console.log(response.data.token);
-      dispatch(sucessLoginreq(pay));
-    })
-    .catch((err) => console.log(err));
-};
+// axios
+//     .post(`https://reqres.in/api/login`, payload, {
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     })
+//     .then((response) => {
+//     let pay = {
+//         token: response.token,
+//         username: payload.username,
+//     };
+//     console.log(response.data.token);
+//     dispatch(sucessLoginreq(pay));
+//     })
+//     .catch((err) => console.log(err));
+// };

@@ -1,48 +1,49 @@
-import { loadData, saveData } from "../../utils/localStorage";
 import {
-  LOGIN_FAILURE,
-  LOGIN_REQ,
+  LOGIN_ERROR,
+  LOGIN_LOADING,
   LOGIN_SUCCESS,
-  LOGOUT_PAGE,
+  LOGOUT_SUCCESS,
 } from "./actiontype";
 
-let isAuth = loadData("auth") || false;
-const initstate = {
-  isAuth: isAuth,
-  isloading: false,
-  isError: false,
+const init = {
+  loading: false,
+  error: false,
+  name: "",
+  email: "",
+  number: "",
+  password: "",
+  id: "",
   token: "",
-  username: "",
 };
-export const LoginReducer = (state = initstate, action) => {
-  const { type, payload } = action;
 
+export const reducer = (state = init, { type, payload }) => {
   switch (type) {
-    case LOGIN_REQ:
+    case LOGIN_LOADING:
       return {
         ...state,
-        isloading: true,
+        loading: true,
       };
     case LOGIN_SUCCESS:
-      saveData("auth", true);
       return {
         ...state,
-        isloading: false,
+        loading: false,
+        error: false,
+        name: payload.name,
+        email: payload.email,
+        number: payload.number,
+        password: payload.password,
+        id: payload.id,
         token: payload.token,
-        username: payload.username,
       };
-    case LOGIN_FAILURE:
+    case LOGIN_ERROR:
       return {
         ...state,
-        isloading: false,
-        isError: true,
+        loading: false,
+        error: true,
       };
-    case LOGOUT_PAGE:
-      saveData("auth", false);
-      return {
-        ...state,
-        isAuth: false,
-      };
+    case LOGOUT_SUCCESS:
+      return init;
+
     default:
       return state;
   }
