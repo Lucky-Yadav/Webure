@@ -3,6 +3,7 @@ const app = express();
 const http = require("http");
 const PORT = 3070;
 // console.log(process);
+var jwt = require("jsonwebtoken");
 
 app.use(express.json());
 
@@ -20,22 +21,13 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   try {
-    const { todo } = req.body;
-    const { task } = todo;
-    console.log(task);
+    const { email, password } = req.body;
+    console.log(email, password);
 
-    let count = 0;
-    todos.forEach((todo) => {
-      count = Math.max(count, todo.id);
-    });
+    const token = jwt.sign({ email: email, password:password }, 'SECRET_KEY');
 
-    let data = {
-      id: count + 1,
-      task,
-      createdAt: new Date(),
-    };
-    todos.push(data);
-    return res.send("todo added");
+    
+    return res.send(token);
   } catch (err) {
     console.error(err);
     return res.status(500).send("internal server errr");
