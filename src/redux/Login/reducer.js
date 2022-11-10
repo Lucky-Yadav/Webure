@@ -8,11 +8,6 @@ import {
 const init = {
   loading: false,
   error: false,
-  name: "",
-  email: "",
-  number: "",
-  password: "",
-  id: "",
   token: "",
 };
 
@@ -28,12 +23,7 @@ export const reducer = (state = init, { type, payload }) => {
         ...state,
         loading: false,
         error: false,
-        name: payload.name,
-        email: payload.email,
-        number: payload.number,
-        password: payload.password,
-        id: payload.id,
-        token: payload.token,
+        token: payload,
       };
     case LOGIN_ERROR:
       return {

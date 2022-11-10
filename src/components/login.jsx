@@ -48,9 +48,9 @@ const Login = () => {
       console.log(res);
     });
   };
-  // if (token) {
-  //   return <Navigate to={"/"} />;
-  // }
+  if (token) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <div>
       <h3>Login into your account</h3>
@@ -76,7 +76,8 @@ const Login = () => {
           variant="contained"
         >
           {/* Login */}
-          {token ? "log out" : "log in"}
+          {token ? "log out" : "Sign Up"}
+          {token}
         </Button>
       </div>
     </div>

@@ -6,16 +6,16 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-// import { logoutsuccess } from "../store/auth/action";
+import { logoutsuccess } from "../redux/Login/action";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const token = useSelector((state) => state.auth.token);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handlelogout = () => {
-    // dispatch(logoutsuccess());
+    dispatch(logoutsuccess());
   };
   return (
     <AppBar position="static">
