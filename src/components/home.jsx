@@ -4,10 +4,13 @@ import { Navigate } from "react-router-dom";
 
 const Home = () => {
   const token = useSelector((state) => state.auth.token);
+  const username = useSelector((state) => state.auth.username);
+  const email = useSelector((state) => state.auth.email);
     
   return (
     <div>
-      <h2>Now You are on Protected Dash Board { token}</h2>
+      <h3> Name :- { username}</h3>
+      <h3> Email :- { email}</h3>
     </div>
   );
 }
