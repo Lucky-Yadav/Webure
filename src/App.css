@@ -12,3 +12,7 @@ a {
   text-decoration: none;
   color: aliceblue;
 }
+.registration {
+  display: flex;
+  gap: 20px;
+}

@@ -35,11 +35,12 @@ const token = useSelector((state) => state.auth.token);
         dispatch(loginloading());
         axios({
           method: "post",
-            url: "https://reqres.in/api/login",
-          data: loginData
-        }).then(res => {
-          dispatch(sucessLogin(res.data.token))
-        })
+          url: "http://localhost:3070/users/signin",
+          data: loginData,
+        }).then((res) => {
+          dispatch(sucessLogin(res.data));
+          console.log(res)
+        });
   }
   if (token) {
     return <Navigate to={"/"}/>
@@ -48,13 +49,14 @@ const token = useSelector((state) => state.auth.token);
     <div>
       <div className="div">
         {Object.keys(loginData).map((el) => (
-          <TextField key={el.email}
+          <TextField key={el}
             value={loginData[el]}
             onChange={ handlechange}
             name={el}
             id={el}
             label={el.toLocaleUpperCase()}
             variant="outlined"
+            required
           />
         ))}
       </div>

@@ -22,7 +22,6 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            Products Pricing Blog
             <Link to={"/"}>Private Route</Link>
           </Box>
           {token ? (
@@ -34,11 +33,18 @@ const Navbar = () => {
               logout
             </Box>
           ) : (
-            <Link to="/login">
-              <Box style={{ cursor: "pointer" }} sx={{ flexGrow: 0 }}>
-                Login
-              </Box>
-            </Link>
+            <div className="registration">
+              <Link to="/login">
+                <Box style={{ cursor: "pointer" }} sx={{ flexGrow: 0 }}>
+                  Login
+                </Box>
+              </Link>
+              <Link to="/signup">
+                <Box style={{ cursor: "pointer" }} sx={{ flexGrow: 0 }}>
+                  Sign Up
+                </Box>
+              </Link>
+            </div>
           )}
         </Toolbar>
       </Container>
