@@ -7,8 +7,6 @@ import { useDispatch } from "react-redux";
 import { loginloading, sucessLogin } from "../store/auth/action";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-// import { LOGIN_LOADING } from "../store/auth/actiontype";
-// import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   
@@ -18,9 +16,7 @@ const token = useSelector((state) => state.auth.token);
         email: "",
         password:""
     })
-  // const handlelogout = () => {
-  //   dispatch(logoutsuccess());
-  // };
+  
 
   const handlechange = (e) => {     
         const { name, value } = e.target;
@@ -31,7 +27,7 @@ const token = useSelector((state) => state.auth.token);
   }
 
   const handlelogin = () => {
-      //  console.log(2);
+      //  console.log(1);
         dispatch(loginloading());
         axios({
           method: "post",
@@ -40,7 +36,7 @@ const token = useSelector((state) => state.auth.token);
         }).then((res) => {
           dispatch(sucessLogin(res.data));
           let token = res.data.token
-          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("logindata", JSON.stringify(loginData));
           console.log(res, token)
         });
   }
